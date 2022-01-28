@@ -1,13 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const stuffRoutes = require('./routes/stuff');
+const userRoutes = require('./routes/user');
 
 const app = express();
-/*mongoose.connect('mongodb+srv://jimbob:<PASSWORD>@cluster0-pme76.mongodb.net/test?retryWrites=true&w=majority',
-  { useNewUrlParser: true,
-    useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://MC:Projet6@projetoc.2amyr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+  { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(() => console.log('Connexion à MongoDB échouée !'));*/
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 const Thing = require('./models/sauce');
 
@@ -33,5 +33,8 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use('/api/sauces', stuffRoutes);
+
+app.use('/api/stuff', stuffRoutes);
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
