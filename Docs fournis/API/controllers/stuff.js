@@ -1,9 +1,8 @@
 const Sauce = require('../models/sauce');
 const fs = require('fs');
-const sauce = require('../models/sauce');
 const { error } = require('console');
 
-// publier une sauce
+// publier une sauce (POST)
 exports.createSauce = (req, res, next) => {
   /*const sauce = new Sauce({
     title: req.body.title,
@@ -16,24 +15,24 @@ exports.createSauce = (req, res, next) => {
   const sauce = new Sauce ({...sauceObject, imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`});
   sauce.save()
     .then(() => res.status(201).json({message: 'Sauce enregistrée !'}))
-    .catch(error => res.status(400).json({error: error}));
+    .catch((error) => res.status(400).json({ error }));
 };
 
-// trouve toutes les sauces
+// trouve toutes les sauces (GET)
 exports.getAllSauces = (req, res, next) => {
   Sauce.find()
-    .then((sauces) => {res.status(200).json(sauces)})
-    .catch((error) => {res.status(400).json({error: error})})
+    .then(sauces => {res.status(200).json(sauces)})
+    .catch(error => {res.status(400).json({ error })})
 };
 
-// trouve une sauce selon sont id
+// trouve une sauce selon sont id (GET)
 exports.getOneSauce = (req, res, next) => {
   Sauce.findOne({_id: req.params.id})
-    .then((sauce) => {res.status(200).json(sauce)})
-    .catch((error) => {res.status(404).json({error: error})});
+    .then(sauce => {res.status(200).json(sauce)})
+    .catch(error => {res.status(404).json({ error })});
 };
 
-// mise à jour d'une sauce
+// mise à jour d'une sauce (PUT)
 exports.modifySauce = (req, res, next) => {
   /*const sauce = new Sauce({
     _id: req.params.id,
@@ -53,7 +52,7 @@ exports.modifySauce = (req, res, next) => {
 // suppression d'une sauce
 exports.deleteSauce = (req, res, next) => {
   Sauce.findOne({ _id: req.params.id })
-    .then(thing => {
+    .then(sauce => {
       const filename = sauce.imageUrl.split('/images/')[1];
       fs.unlink(`ìmages/${filename}`, () => {
         Sauce.deleteOne({ _id: req.params.id })
@@ -63,3 +62,5 @@ exports.deleteSauce = (req, res, next) => {
     })
     .catch(error => res.status(500).json({ error }));
 };
+
+// likes et dislikes (POST)

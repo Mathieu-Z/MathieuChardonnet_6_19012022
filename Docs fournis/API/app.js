@@ -10,9 +10,9 @@ mongoose.connect('mongodb+srv://MC:Projet6@projetoc.2amyr.mongodb.net/myFirstDat
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-const Thing = require('./models/sauce');
+const Sauce = require('./models/sauce');
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   console.log('Requête reçue !');
   next();
 });
@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   console.log('Réponse envoyée avec succès !');
-});
+});*/
 
 app.use(express.json());
 
