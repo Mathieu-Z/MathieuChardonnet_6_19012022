@@ -35,7 +35,7 @@ app.use(express.json());
 
 app.use('/api/sauces', stuffRoutes);
 
-app.use('/api/stuff', stuffRoutes);
+//app.use('/api/stuff', stuffRoutes);
 app.use('/api/auth', userRoutes);
 
 app.use('/images', express.static(path.join(__dirname, 'images')));

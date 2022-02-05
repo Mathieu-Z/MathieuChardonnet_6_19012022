@@ -64,3 +64,10 @@ exports.deleteSauce = (req, res, next) => {
 };
 
 // likes et dislikes (POST)
+exports.likes = (req, res, next) => {
+  Sauce.findOne({ _id: req.params.id})
+    .then(sauce => {
+
+    })
+    .catch(error => res.status(403).json({ error }));
+}
